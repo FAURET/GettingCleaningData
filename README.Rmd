@@ -1,0 +1,58 @@
+---
+title: "README"
+author: "ThierryFauret"
+date: "5 février 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# ASSIGNMENT "GETTING DND CLEANING DATA" - README
+
+## 1. DESCRIPTION OF THE FILES
+
+The projects files are :  
+----
+* run_analysis.R  : script of the code
+* tidydata.txt  : results
+* codeBook.Rmd  : codebook for tidy data
+* README.Rmd
+* CodeDescription.html (description with display of results)
+
+
+## 2. INPUT DATA
+ The data used are linked to from the course website represent data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained:
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+Here are the data for the project:
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+128 readings were available for 561 features
+First pre treatment have been performed on the data :  
+- calcul of mean / standard deviation for the different features (and others statistical calculus)   
+- normalized values => so all the measures are bounded within [-1; 1].  
+These calculated parameters were available in the zip.
+
+Two samples :  test and training
+
+
+
+## 3. DATA TREATMENT
+### STEP 1
+1. Read the test and train data
+2. Read the names of the features
+3. Clean the name of the features (removing the () and the -)
+4. Filter the features names : only the ones which content "mean" or "std
+5. Merge the several data  : test / train / features / activities
+=> in the obtained data base, we can read the designation of the activity and the designation of the feature
+
+### STEP 2
+1. by using the function "gather", a variable "label.feature" is created
+2. Subject/label.features/label.activity defined as Factor.
+3. function by_group and summarise in order to calculate the mean of the features for each triplet (subject/lable.activity/label.feature)
+
+
+## 4. DESCRIPTION OF THE TIDYDATA.TXT FILE
+The description of the data base available in TIDYDATA.TXT is given in CodeBook.Rmd. 
+(4 columns, 14220 rows)
