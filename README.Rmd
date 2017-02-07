@@ -1,7 +1,7 @@
 ---
 title: "README"
 author: "ThierryFauret"
-date: "5 février 2017"
+date: "7 février 2017"
 output: html_document
 ---
 
@@ -48,9 +48,8 @@ Two samples :  test and training
 => in the obtained data base, we can read the designation of the activity and the designation of the feature
 
 ### STEP 2
-1. by using the function "gather", a variable "label.feature" is created
-2. Subject/label.features/label.activity defined as Factor.
-3. function by_group and summarise in order to calculate the mean of the features for each triplet (subject/lable.activity/label.feature)
+1. by using the function "aggregate", the mean is calculating for each feature parameters
+
 
 
 ## 4. DESCRIPTION OF THE TIDYDATA.TXT FILE

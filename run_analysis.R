@@ -2,9 +2,9 @@ library(dplyr)
 library(tidyr)
 library(lubridate)
 
-#urlb<-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-#download.file(urlb,"data.zip",method="libcurl")
-#unzip("data.zip")
+urlb<-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+download.file(urlb,"data.zip",method="libcurl")
+unzip("data.zip")
 
 
 # READING OF TRAINING DATA
@@ -78,16 +78,7 @@ select(- activity)
 # STEP 2 of the assignment 
 #############################################
 
-bdd2<-bdd
-bdd2<-gather(bdd2,key=label.feature, value=value,2:(nb.features+1), na.rm= TRUE)
-grp_cols <- names(bdd2)[1:3]
-# Convert character vector to list of symbols
-dots <- lapply(grp_cols, as.symbol)
-bdd2$label.feature<-as.factor(bdd2$label.feature)
-bdd2$subject<-as.factor(bdd2$subject)
-bdd2<-group_by_(bdd2,.dots=dots)
-#Calculs of the mean for eachn combination of subject/activity/feature
-bdd2<-summarise(bdd2,mean.value=mean(value,na.rm=TRUE))
+bdd2<-aggregate(.~subject+label.activity,data=bdd,mean)
 
 # Writting of the results in tidydata.txt
 write.table(bdd2, file = "tidydata.txt",row.name=FALSE)
