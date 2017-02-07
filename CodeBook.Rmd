@@ -1,7 +1,7 @@
 ---
 title: "CodeBook"
 author: "ThierryFauret"
-date: "5 février 2017"
+date: "7 février 2017"
 output: html_document
 ---
 
@@ -14,105 +14,102 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Description of the data base
 
-The data base has 14220 rows and 4 columns.
-The columns has defined below.
+The data base has 180 rows and 81 columns.
+The columns are defined below.
 
 ## List of variables
 
-|    Variable Name    | Designation                          |  TYpe of variable |         Values              | 
-|---------------------|:------------------------------------:|:-----------------:|:----------------------------|
-| subject             | Number which identifies the Subject  |Factor             |"1"  to "30"                 |
-|                     |                                      |30 values          |                             |
-|                     |                                      |                   |                             |
-| label.activity      | Designation of the activities        |Factor             |LAYING                       |
-|                     |                                      |6 vaues            |SITTING                      |
-|                     |                                      |                   |STANDING                     |
-|                     |                                      |                   |WALKING                      |
-|                     |                                      |                   |WALKING_DOWNSTAIRS           |
-|                     |                                      |                   |WALKING_UPSTAIRS             |
-|                     |                                      |                   |                             |
-|label.feature        |Designation of the  calculated        |Factor             |fBodyAcc.mean.X              |
-|                     |parameters for several features       |79 values          |fBodyAcc.mean.Y              |
-|                     |                                      |                   |fBodyAcc.mean.Z              |
-|                     |                                      |                   |fBodyAcc.meanFreq.X          |
-|                     |                                      |                   |fBodyAcc.meanFreq.Y          |
-|                     |                                      |                   |fBodyAcc.meanFreq.Z          |
-|                     |                                      |                   |fBodyAcc.std.X               |
-|                     |                                      |                   |fBodyAcc.std.Y               |
-|                     |                                      |                   |fBodyAcc.std.Z               |
-|                     |                                      |                   |fBodyAccJerk.mean.X          |
-|                     |                                      |                   |fBodyAccJerk.mean.Y          |
-|                     |                                      |                   |fBodyAccJerk.mean.Z          |
-|                     |                                      |                   |fBodyAccJerk.meanFreq.X      |
-|                     |                                      |                   |fBodyAccJerk.meanFreq.Y      |
-|                     |                                      |                   |fBodyAccJerk.meanFreq.Z      |
-|                     |                                      |                   |fBodyAccJerk.std.X           |
-|                     |                                      |                   |fBodyAccJerk.std.Y           |
-|                     |                                      |                   |fBodyAccJerk.std.Z           |
-|                     |                                      |                   |fBodyAccMag.mean             |
-|                     |                                      |                   |fBodyAccMag.meanFreq         |
-|                     |                                      |                   |fBodyAccMag.std              |
-|                     |                                      |                   |fBodyBodyAccJerkMag.mean     |
-|                     |                                      |                   |fBodyBodyAccJerkMag.meanFreq |     
-|                     |                                      |                   |fBodyBodyAccJerkMag.std      |      
-|                     |                                      |                   |fBodyBodyGyroJerkMag.mean    |
-|                     |                                      |                   |fBodyBodyGyroJerkMag.meanFreq|
-|                     |                                      |                   |fBodyBodyGyroJerkMag.std     |
-|                     |                                      |                   |fBodyBodyGyroMag.mean        |
-|                     |                                      |                   |fBodyBodyGyroMag.meanFreq    |
-|                     |                                      |                   |fBodyBodyGyroMag.std         |
-|                     |                                      |                   |fBodyGyro.mean.X             |
-|                     |                                      |                   |fBodyGyro.mean.Y             |
-|                     |                                      |                   |fBodyGyro.mean.Z             |
-|                     |                                      |                   |fBodyGyro.meanFreq.X         |
-|                     |                                      |                   |fBodyGyro.meanFreq.Y         |
-|                     |                                      |                   |fBodyGyro.meanFreq.Z         |
-|                     |                                      |                   |fBodyGyro.std.X              |
-|                     |                                      |                   |fBodyGyro.std.Y              |
-|                     |                                      |                   |fBodyGyro.std.Z              |
-|                     |                                      |                   |tBodyAcc.mean.X              |
-|                     |                                      |                   |tBodyAcc.mean.Y              |
-|                     |                                      |                   |tBodyAcc.mean.Z              |
-|                     |                                      |                   |tBodyAcc.std.X               |
-|                     |                                      |                   |tBodyAcc.std.Y               |
-|                     |                                      |                   |tBodyAcc.std.Z               |
-|                     |                                      |                   |tBodyAccJerk.mean.X          |
-|                     |                                      |                   |tBodyAccJerk.mean.Y          |
-|                     |                                      |                   |tBodyAccJerk.mean.Z          |
-|                     |                                      |                   |tBodyAccJerk.std.X           |
-|                     |                                      |                   |tBodyAccJerk.std.Y           |
-|                     |                                      |                   |tBodyAccJerk.std.Z           |
-|                     |                                      |                   |tBodyAccJerkMag.mean         |
-|                     |                                      |                   |tBodyAccJerkMag.std          |
-|                     |                                      |                   |tBodyAccMag.mean             |
-|                     |                                      |                   |tBodyAccMag.std              |
-|                     |                                      |                   |tBodyGyro.mean.X             |
-|                     |                                      |                   |tBodyGyro.mean.Y             |
-|                     |                                      |                   |tBodyGyro.mean.Z             |
-|                     |                                      |                   |tBodyGyro.std.X              |
-|                     |                                      |                   |tBodyGyro.std.Y              |
-|                     |                                      |                   |tBodyGyro.std.Z              |
-|                     |                                      |                   |tBodyGyroJerk.mean.X         |
-|                     |                                      |                   |tBodyGyroJerk.mean.Y         |
-|                     |                                      |                   |tBodyGyroJerk.mean.Z         |
-|                     |                                      |                   |tBodyGyroJerk.std.X          |
-|                     |                                      |                   |tBodyGyroJerk.std.Y          |
-|                     |                                      |                   |tBodyGyroJerk.std.Z          |
-|                     |                                      |                   |tBodyGyroJerkMag.mean        |
-|                     |                                      |                   |tBodyGyroJerkMag.std         |
-|                     |                                      |                   |tBodyGyroMag.mean            |
-|                     |                                      |                   |tBodyGyroMag.std             |
-|                     |                                      |                   |tGravityAcc.mean.X           |
-|                     |                                      |                   |tGravityAcc.mean.Y           |
-|                     |                                      |                   |tGravityAcc.mean.Z           |
-|                     |                                      |                   |tGravityAcc.std.X            |
-|                     |                                      |                   |tGravityAcc.std.Y            |
-|                     |                                      |                   |tGravityAcc.std.Z            |
-|                     |                                      |                   |tGravityAccMag.mean          |
-|                     |                                      |                   |tGravityAccMag.std           |
-|                     |                                      |                   |                             |
-| mean.value          |Mean value of the feature parameters  | Double            |Value between -1 and 1       |
-|                     |                                      |                   |(Features are normalized)    |
+|    Variable Name            | Designation                 |  TYpe of variable |         Values              | 
+|-----------------------------|:---------------------------:|:-----------------:|:----------------------------|
+| subject                     | Number which identifies     |Factor             |"1"  to "30"                 |
+|                             |the Subject                  |30 values          |                             |
+|                             |                             |                   |                             |
+| label.activity              | Designation of the activity |Factor             |LAYING                       |
+|                             |                             |6 factors          |STANDING                     |
+|                             |                             |                   |SITTING                      |
+|                             |                             |                   |WALKING                      |
+|                             |                             |                   |WALKING_DOWNSTAIRS           |
+|                             |                             |                   |WALKING_UPSTAIRS             |
+|                             |                             |                   |                             |
+|fBodyAcc.mean.X              |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAcc.mean.Y              |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAcc.mean.Z              |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAcc.meanFreq.X          |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAcc.meanFreq.Y          |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAcc.meanFreq.Z          |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAcc.std.X               |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAcc.std.Y               |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAcc.std.Z               |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAccJerk.mean.X          |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAccJerk.mean.Y          |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAccJerk.mean.Z          |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAccJerk.meanFreq.X      |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAccJerk.meanFreq.Y      |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAccJerk.meanFreq.Z      |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAccJerk.std.X           |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAccJerk.std.Y           |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAccJerk.std.Z           |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAccMag.mean             |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAccMag.meanFreq         |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyAccMag.std              |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyBodyAccJerkMag.mean     |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyBodyAccJerkMag.meanFreq |mean.value of the parameter  |double             | bewteen -1 and 1            |     
+|fBodyBodyAccJerkMag.std      |mean.value of the parameter  |double             | bewteen -1 and 1            |      
+|fBodyBodyGyroJerkMag.mean    |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyBodyGyroJerkMag.meanFreq|mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyBodyGyroJerkMag.std     |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyBodyGyroMag.mean        |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyBodyGyroMag.meanFreq    |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyBodyGyroMag.std         |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyGyro.mean.X             |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyGyro.mean.Y             |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyGyro.mean.Z             |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyGyro.meanFreq.X         |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyGyro.meanFreq.Y         |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyGyro.meanFreq.Z         |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyGyro.std.X              |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyGyro.std.Y              |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|fBodyGyro.std.Z              |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyAcc.mean.X              |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyAcc.mean.Y              |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyAcc.mean.Z              |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyAcc.std.X               |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyAcc.std.Y               |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyAcc.std.Z               |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyAccJerk.mean.X          |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyAccJerk.mean.Y          |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyAccJerk.mean.Z          |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyAccJerk.std.X           |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyAccJerk.std.Y           |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyAccJerk.std.Z           |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyAccJerkMag.mean         |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyAccJerkMag.std          |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyAccMag.mean             |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyAccMag.std              |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyGyro.mean.X             |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyGyro.mean.Y             |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyGyro.mean.Z             |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyGyro.std.X              |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyGyro.std.Y              |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyGyro.std.Z              |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyGyroJerk.mean.X         |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyGyroJerk.mean.Y         |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyGyroJerk.mean.Z         |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyGyroJerk.std.X          |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyGyroJerk.std.Y          |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyGyroJerk.std.Z          |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyGyroJerkMag.mean        |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyGyroJerkMag.std         |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyGyroMag.mean            |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tBodyGyroMag.std             |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tGravityAcc.mean.X           |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tGravityAcc.mean.Y           |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tGravityAcc.mean.Z           |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tGravityAcc.std.X            |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tGravityAcc.std.Y            |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tGravityAcc.std.Z            |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tGravityAccMag.mean          |mean.value of the parameter  |double             | bewteen -1 and 1            |
+|tGravityAccMag.std           |mean.value of the parameter  |double             | bewteen -1 and 1            |
 
 
 ```{r cars}
