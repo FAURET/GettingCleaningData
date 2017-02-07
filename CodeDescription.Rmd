@@ -1,0 +1,129 @@
+---
+title: "CodeDescription"
+author: "ThierryFauret"
+date: "5 février 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The object of this file is to describe to ru_analysis.R code :
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(lubridate)
+
+urlb<-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+download.file(urlb,"data.zip",method="libcurl")
+unzip("data.zip")
+
+
+# READING OF TRAINING DATA
+
+# number of the subject from 1 to 30
+subject.train<-read.table("UCI HAR Dataset/train/subject_train.txt")
+
+# list of performances for each futures
+x.train<-read.table("UCI HAR Dataset/train/X_train.txt")
+
+#activity from 1 to 6
+y.train<-read.table("UCI HAR Dataset/train/y_train.txt")
+
+
+
+# READING OF TEST DATA
+
+# number of the subject from 1 to 30
+subject.test<-read.table("UCI HAR Dataset/test/subject_test.txt")
+# list of performances for each futures
+x.test<-read.table("UCI HAR Dataset/test/X_test.txt")
+#activity from 1 to 6
+y.test<-read.table("UCI HAR Dataset/test/y_test.txt")
+
+
+```
+WE read the name of features and keep only labels with "mean" and "std""
+
+```{r}
+#READING OF FEATURES DATA
+
+list.features<-read.table("UCI HAR Dataset/features.txt")
+
+#We keep only the features for whose labels contain mean of std
+list.features<-list.features[grep("mean|std", list.features[,2]),]
+
+```
+
+We clean the label of features by removing "-" and parentesis.
+
+```{r}
+# Cleaning the labels by removing the parentessis and the "-"
+list.features[,2]<-gsub("-",".",list.features[,2])
+list.features[,2]<-gsub("\\()","",list.features[,2])
+
+# calcul of the new number of features analyzed (with mean and std)
+
+nb.features<-nrow(list.features)
+
+```
+
+We filter the intial data (only feature with mean and std in the name)
+
+```{r}
+# Filter on mean and STD values given for the different features
+
+x.test<-x.test[,list.features[,1]]
+x.train<-x.train[,list.features[,1]]
+
+```
+
+List of the activities
+```{r}
+#READING OF ACTIVITIES TABLE : WALKING, WLAKING_UPSTAIRS
+
+list.activities<-read.table("UCI HAR Dataset/activity_labels.txt")
+colnames(list.activities)<-c("nb.activity","label.activity")
+print(list.activities)
+```
+
+We merge the data in order to have an unique data base :
+
+```{r}
+# MERGING DIFFRENT DATA bASES TO HAVE AN UNIQUE DATA BASE WITH
+#     *  train data
+#     *  test data
+#     *  labels of activity
+
+bdd.train<-cbind(subject.train,y.train,x.train)
+colnames(bdd.train)<-c("subject","activity",list.features[1:nrow(list.features),2])
+bdd.test<-cbind(subject.test, y.test,x.test)
+colnames(bdd.test)<-c("subject","activity",list.features[1:nrow(list.features),2])
+bdd<-rbind(bdd.train,bdd.test) %>%
+merge(list.activities,by.x="activity",by.y="nb.activity") %>%
+select(- activity)
+print(head(bdd,2))
+```
+
+Calcul of the mean for each subject, each activity and each feature :
+
+```{r}
+#############################################
+# STEP 2 of the assignment 
+#############################################
+#############################################
+# STEP 2 of the assignment 
+#############################################
+
+bdd2<-aggregate(.~subject+label.activity,data=bdd,mean)
+print(head(bdd,2))
+
+# Writting of the results in tidydata.txt
+write.table(bdd2, file = "tidydata.txt",row.name=FALSE)
+
+```
+
+
+
